@@ -1,7 +1,7 @@
-Sustainable Travel SQL Analysis
+🌿 Sustainable Travel SQL Analysis
 
-Author: Günel Xəlilli
-Date: 2025-10-22
+👩‍💻 Author: Günel Xəlilli
+📅 Date: 2025-11-24
 
 This repository contains SQL queries and exploratory analysis performed on a sustainable travel & carbon-emission dataset.
 It includes tables for travelers, trips, transport modes, emission factors, and carbon-offset projects.
@@ -9,21 +9,38 @@ The project demonstrates the use of aggregation, JOINs, CO₂ calculations, date
 
 📂 Repository Structure
 
-travel_queries.sql — All SQL queries collected and organized.
-SQL.Questions.Solutions — All SQL questions and solutions collected.
-examples — Query output screenshots.
-LICENSE — License file (MIT suggested).
+📝 SQL.Questions.Solutions — All SQL questions and solutions collected
+
+🖼 examples/ — Query output screenshots
+
+📜 LICENSE — License file (MIT suggested)
 
 🧠 Topics Covered
+🔹 Aggregate Functions
 
-Aggregate functions: COUNT, SUM, AVG, MAX
+COUNT, SUM, AVG, MAX
 
-CO₂ emission calculations
+🔹 CO₂ Emission Calculations
 
-Multi-table JOINs
+Compute emissions per trip, per traveler, or per transport mode
 
-Conditional logic: CASE WHEN
+🔹 Multi-table JOINs
 
-Date filtering and analysis
+Combine travelers, trips, emission factors, and contributions
 
-Window functions: RANK(), ROW_NUMBER(), DENSE_RANK()# Eco-Travel-Data-Warehouse-PostgreSQL-Project-
+🔹 Conditional Logic
+
+CASE WHEN statements for conditional computations
+
+🔹 Date Filtering & Analysis
+
+Analyze trips or contributions over specific date ranges
+
+🔹 Window Functions
+
+RANK(), ROW_NUMBER(), DENSE_RANK() for ranking and analysis
+
+
+
+
+
