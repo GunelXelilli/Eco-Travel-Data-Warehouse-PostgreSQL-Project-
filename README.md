@@ -1,44 +1,39 @@
-🌿 Sustainable Travel SQL Analysis
+# 🌿 Sustainable Travel SQL Analysis
 
-👩‍💻 Author: Günel Xəlilli
-📅 Date: 2025-11-24
+**👩‍💻 Author:** Günel Xəlilli  
+**📅 Date:** 2025-11-24  
 
-This repository contains SQL queries and exploratory analysis performed on a sustainable travel & carbon-emission dataset.
-It includes tables for travelers, trips, transport modes, emission factors, and carbon-offset projects.
-The project demonstrates the use of aggregation, JOINs, CO₂ calculations, date filtering, and analytical SQL techniques.
+This repository contains SQL queries and exploratory analysis performed on a **sustainable travel & carbon-emission dataset**.  
+It includes tables for travelers, trips, transport modes, emission factors, and carbon-offset projects.  
+The project demonstrates the use of **aggregation, JOINs, CO₂ calculations, date filtering, and analytical SQL techniques**.
 
-📂 Repository Structure
 
-📝 SQL.Questions.Solutions — All SQL questions and solutions collected
 
-🖼 examples/ — Query output screenshots
 
-📜 LICENSE — License file (MIT suggested)
 
-🧠 Topics Covered
-🔹 Aggregate Functions
+## 📂 Repository Structure
 
-COUNT, SUM, AVG, MAX
+- **📝 SQL.Questions.Solutions** — All SQL questions and solutions collected  
+- **🖼 examples/** — Query output screenshots  
+- **📜 LICENSE** — License file (MIT suggested)  
 
-🔹 CO₂ Emission Calculations
 
-Compute emissions per trip, per traveler, or per transport mode
 
-🔹 Multi-table JOINs
 
-Combine travelers, trips, emission factors, and contributions
+## 🧠 Topics Covered
 
-🔹 Conditional Logic
+### 🔹 Aggregate Functions
+- `COUNT`, `SUM`, `AVG`, `MAX`  
 
-CASE WHEN statements for conditional computations
+### 🔹 CO₂ Emission Calculations
+- Compute emissions per trip, per traveler, or per transport mode  
 
-🔹 Date Filtering & Analysis
+### 🔹 Multi-table JOINs
+- Combine travelers, trips, emission factors, and contributions  
 
-Analyze trips or contributions over specific date ranges
+### 🔹 Conditional Logic
+- `CASE WHEN` statements for conditional computations
 
-🔹 Window Functions
-
-RANK(), ROW_NUMBER(), DENSE_RANK() for ranking and analysis
 
 
 
