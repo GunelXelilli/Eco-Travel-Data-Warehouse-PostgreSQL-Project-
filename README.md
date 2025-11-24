@@ -32,8 +32,8 @@ The project demonstrates the use of **aggregation, JOINs, CO₂ calculations, da
 - Combine travelers, trips, emission factors, and contributions  
 
 ### 🔹 Conditional Logic
-- `CASE WHEN` statements for conditional computations
-- 
+- `CASE WHEN` statements for conditional computations  
+
 ### 🔹 Date Filtering & Analysis
 - Analyze trips or contributions over specific date ranges  
 
