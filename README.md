@@ -8,6 +8,11 @@ It includes tables for travelers, trips, transport modes, emission factors, and 
 The project demonstrates the use of **aggregation, JOINs, CO₂ calculations, date filtering, and analytical SQL techniques**.
 
 
+
+
+
+
+
 🏗 Data Warehouse Explanation
 
 This project uses a small data warehouse structure to organize the sustainable travel dataset.
@@ -22,6 +27,10 @@ Emission Factors — stores CO₂ emission per kilometer for each transport mode
 Offset Projects — details carbon-offset projects (e.g., reforestation, solar, wind)
 
 Contributions — links travelers to offset projects, showing how much they contributed
+
+
+
+
 
 
 
