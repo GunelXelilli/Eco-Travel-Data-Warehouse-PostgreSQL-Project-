@@ -33,7 +33,12 @@ The project demonstrates the use of **aggregation, JOINs, CO₂ calculations, da
 
 ### 🔹 Conditional Logic
 - `CASE WHEN` statements for conditional computations
+- 
+### 🔹 Date Filtering & Analysis
+- Analyze trips or contributions over specific date ranges  
 
+### 🔹 Window Functions
+- `RANK()`, `ROW_NUMBER()`, `DENSE_RANK()` for ranking and analysis 
 
 
 
