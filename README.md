@@ -41,20 +41,23 @@ The project demonstrates the use of **aggregation, JOINs, CO₂ calculations, da
 - `RANK()`, `ROW_NUMBER()`, `DENSE_RANK()` for ranking and analysis 
 
 
+
+
+
 ### Travelers Table
-![Travelers Table]()
+![Travelers Table](https://github.com/GunelXelilli/Eco-Travel-Data-Warehouse-PostgreSQL-Project-/blob/main/Travellersphoto.png)
 
 ### Trips Table
-![Trips Table]()
+![Trips Table](https://github.com/GunelXelilli/Eco-Travel-Data-Warehouse-PostgreSQL-Project-/blob/main/Tripsphoto.png)
 
 ### Emission Factors Table
-![Emission Factors Table]()
+![Emission Factors Table](https://github.com/GunelXelilli/Eco-Travel-Data-Warehouse-PostgreSQL-Project-/blob/main/emission-factorsphoto.png)
 
 ### Offset Projects Table
-![Offset Projects Table]()
+![Offset Projects Table](https://github.com/GunelXelilli/Eco-Travel-Data-Warehouse-PostgreSQL-Project-/blob/main/offset-projectsphoto.png)
 
 ### Contributions Table
-![Contributions Table]()
+![Contributions Table](https://github.com/GunelXelilli/Eco-Travel-Data-Warehouse-PostgreSQL-Project-/blob/main/Contributionsphoto.png)
 
 
 
