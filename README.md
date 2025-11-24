@@ -3,38 +3,20 @@
 **👩‍💻 Author:** Günel Xəlilli  
 **📅 Date:** 2025-11-24  
 
-This repository contains SQL queries and exploratory analysis performed on a **sustainable travel & carbon-emission dataset**.  
-It includes tables for travelers, trips, transport modes, emission factors, and carbon-offset projects.  
-The project demonstrates the use of **aggregation, JOINs, CO₂ calculations, date filtering, and analytical SQL techniques**.
 
 
+This repository contains a **sustainable travel & carbon-emission dataset** organized in a small data warehouse structure.  
+It includes the following tables:
 
+- **Travelers** — personal information (name, age, country, gender)  
+- **Trips** — each trip taken, including destination, transport mode, distance, date, and duration  
+- **Emission Factors** — CO₂ emission per kilometer for each transport mode  
+- **Offset Projects** — details carbon-offset projects (reforestation, solar, wind, etc.)  
+- **Contributions** — links travelers to offset projects and records their contributions  
 
+The dataset and table structure are designed to **practice SQL queries** such as JOINs, aggregation, CO₂ calculations, date filtering, and analytical techniques.
 
-
-
-🏗 Data Warehouse Explanation
-
-This project uses a small data warehouse structure to organize the sustainable travel dataset.
-Each table has a clear purpose and represents a different aspect of the data:
-
-Travelers — stores personal information about each traveler (name, age, country, gender)
-
-Trips — contains each trip taken, including destination, transport mode, distance, date, and duration
-
-Emission Factors — stores CO₂ emission per kilometer for each transport mode
-
-Offset Projects — details carbon-offset projects (e.g., reforestation, solar, wind)
-
-Contributions — links travelers to offset projects, showing how much they contributed
-
-
-
-
-
-
-
-
+---
 
 ## 📂 Repository Structure
 
