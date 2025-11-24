@@ -41,6 +41,22 @@ The project demonstrates the use of **aggregation, JOINs, CO₂ calculations, da
 - `RANK()`, `ROW_NUMBER()`, `DENSE_RANK()` for ranking and analysis 
 
 
+### Travelers Table
+![Travelers Table]()
+
+### Trips Table
+![Trips Table]()
+
+### Emission Factors Table
+![Emission Factors Table]()
+
+### Offset Projects Table
+![Offset Projects Table]()
+
+### Contributions Table
+![Contributions Table]()
+
+
 
 
 
