@@ -8,18 +8,17 @@ Also, label travelers with a total distance over 1000 km as “Long Traveler” 
 
 **Solution:**
 
+```sql
 
-SELECT 
-    t.full_name,
-    COUNT(tr.trip_id) AS total_trips,
-    SUM(tr.distance_km) AS total_distance,
-    CASE
-        WHEN SUM(tr.distance_km) > 1000 THEN 'Long Traveler'
-        ELSE 'Short Traveler'
-    END AS traveler_type
-FROM public.travelers t
-JOIN public.trips tr USING (traveler_id)
-GROUP BY t.full_name
-ORDER BY total_distance DESC
+SELECT full_name,count( trip_id ) AS "total_trips"  , sum(distance_km) AS "total_distance",
+CASE
+     WHEN sum(distance_km)>1000 THEN 'Long Traveler'
+     ELSE 'Short Traveler'
+END AS traveler_type
+FROM public.travelers
+JOIN public.trips USING (traveler_id)
+GROUP BY full_name
+ORDER BY total_trips,total_distance DESC
+
 
 
