@@ -84,9 +84,37 @@ SELECT
     t.full_name, 
     SUM(tr.distance_km * ef.co2_per_km) AS total_co2_emission, 
     RANK() OVER(
-        ORDER BY SUM(tr.di
+        ORDER BY SUM(tr.distance_km * ef.co2_per_km) DESC
+    ) AS global_emission_rank
+FROM trips tr
+JOIN travelers t ON tr.traveler_id = t.traveler_id
+JOIN emission_factors ef ON tr.transport_mode = ef.transport_mode
+GROUP BY t.full_name
+HAVING SUM(tr.distance_km * ef.co2_per_km) > 500;
 
 
+
+### Question 5 – Filtering + CASE WHEN + Window Function
+
+**Question:**  
+For each **contribution**, show the traveler’s **total contribution** and label them as “High Donor” if their total contribution exceeds 75 USD, otherwise “Low Donor.”  
+Sort travelers by total contribution in descending order.
+
+**Solution:**
+
+```sql
+SELECT 
+    t.full_name, 
+    c.project_id, 
+    c.contribution_usd, 
+    SUM(c.contribution_usd) OVER(PARTITION BY t.traveler_id) AS total_contribution, 
+    CASE 
+        WHEN SUM(c.contribution_usd) OVER(PARTITION BY t.traveler_id) > 75 THEN 'High Donor'
+        ELSE 'Low Donor' 
+    END AS donor_category
+FROM contributions c
+JOIN travelers t ON c.traveler_id = t.traveler_id
+ORDER BY total_contribution DESC;
 
 
 
