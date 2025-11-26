@@ -71,5 +71,25 @@ GROUP BY t.country;
 
 
 
+### Question 4 – Aggregation + Window Function + Filtering
+
+**Question:**  
+Calculate the **total CO2 emissions** for each **traveler** and rank travelers globally by total CO2 emissions.  
+Only include travelers whose total CO2 emission is greater than 500.
+
+**Solution:**
+
+```sql
+SELECT 
+    t.full_name, 
+    SUM(tr.distance_km * ef.co2_per_km) AS total_co2_emission, 
+    RANK() OVER(
+        ORDER BY SUM(tr.di
+
+
+
+
+
+
 
 
