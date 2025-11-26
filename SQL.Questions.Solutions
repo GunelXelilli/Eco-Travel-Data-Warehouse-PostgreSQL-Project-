@@ -48,5 +48,28 @@ JOIN emission_factors ef ON tr.transport_mode = ef.transport_mode
 WHERE tr.distance_km > 500;
 
 
+### Question 3 – Aggregation + CASE WHEN + Filtering
+
+**Question:**  
+For each **country**, calculate the total number of trips and average distance.  
+Label countries with an average distance over 700 km as “Far Trips Country” and others as “Nearby Trips Country.”
+
+**Solution:**
+
+```sql
+SELECT 
+    t.country, 
+    COUNT(tr.trip_id) AS total_trips,
+    AVG(tr.distance_km) AS avg_distance,
+    CASE 
+        WHEN AVG(tr.distance_km) > 700 THEN 'Far Trips Country'
+        ELSE 'Nearby Trips Country'
+    END AS trip_type
+FROM public.travelers t
+JOIN public.trips tr USING (traveler_id)
+GROUP BY t.country;
+
+
+
 
 
