@@ -22,3 +22,31 @@ ORDER BY total_trips,total_distance DESC
 
 
 
+### Question 2 – Window Function + Filtering
+
+**Question:**  
+For each **traveler**, calculate the **CO2 emission per trip** and rank the emissions within each traveler.  
+(CO2 = distance_km × co2_per_km)  
+Only include trips with a distance greater than 500 km.
+
+**Solution:**
+
+```sql
+SELECT 
+    t.full_name, 
+    tr.destination, 
+    tr.transport_mode, 
+    tr.distance_km, 
+    tr.distance_km * ef.co2_per_km AS co2_emission, 
+    RANK() OVER(
+        PARTITION BY t.traveler_id 
+        ORDER BY tr.distance_km * ef.co2_per_km DESC
+    ) AS rank_within_traveler
+FROM trips tr
+JOIN travelers t ON tr.traveler_id = t.traveler_id
+JOIN emission_factors ef ON tr.transport_mode = ef.transport_mode
+WHERE tr.distance_km > 500;
+
+
+
+
