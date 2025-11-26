@@ -117,6 +117,39 @@ JOIN travelers t ON c.traveler_id = t.traveler_id
 ORDER BY total_contribution DESC;
 
 
+### Question 6 – Trip CO2 vs. Contributions (JOIN + Aggregation + Filtering)
+
+**Question:**  
+Combine each trip’s **CO2 emission** with the traveler’s **total contribution** and show only the trips where the traveler’s total contribution exceeds **50% of the trip’s CO2 emission**.
+
+**Solution (PostgreSQL version):**
+
+```sql
+SELECT *
+FROM (
+    SELECT
+        t.full_name,
+        tr.trip_id,
+        tr.destination,
+        tr.distance_km,
+
+        -- CO2 per trip
+        tr.distance_km * ef.co2_per_km AS co2_emission,
+
+        -- Total contribution per traveler (window function)
+        SUM(c.contribution_usd) OVER (PARTITION BY t.traveler_id) AS total_contribution
+    FROM trips tr
+    JOIN travelers t 
+        ON tr.traveler_id = t.traveler_id
+    JOIN emission_factors ef 
+        ON tr.transport_mode = ef.transport_mode
+    LEFT JOIN contributions c 
+        ON t.traveler_id = c.traveler_id
+) q
+WHERE q.total_contribution > 0.5 * q.co2_emission;
+
+
+
 
 
 
