@@ -171,6 +171,35 @@ JOIN public.emission_factors ef
 GROUP BY tr.transport_mode;
 
 
+### Question 8 – Window Function (LAG)
+
+**Question:**  
+For each **traveler**, order their trips by **trip date** and show the **CO₂ emission of the previous trip**.  
+(CO₂ = `distance_km × co2_per_km`)
+
+**Solution:**
+
+```sql
+SELECT
+    t.full_name,
+    tr.trip_id,
+    tr.trip_date,
+    tr.distance_km,
+    tr.transport_mode,
+    tr.distance_km * ef.co2_per_km AS co2_emission,
+    LAG(tr.distance_km * ef.co2_per_km) OVER (
+        PARTITION BY tr.traveler_id
+        ORDER BY tr.trip_date
+    ) AS previous_co2_emission
+
+FROM public.trips tr
+JOIN public.travelers t 
+    ON tr.traveler_id = t.traveler_id
+JOIN public.emission_factors ef 
+    ON tr.transport_mode = ef.transport_mode
+ORDER BY t.full_name, tr.trip_date;
+
+
 
 
 
