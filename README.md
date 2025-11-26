@@ -61,7 +61,7 @@ The dataset and table structure are designed to **practice SQL queries** such as
 ![Emission Factors Table](https://github.com/GunelXelilli/Eco-Travel-Data-Warehouse-PostgreSQL-Project-/blob/main/emission-factorsphoto.png)
 
 ### Offset Projects Table
-![Offset Projects Table()
+![Offset Projects Table](https://github.com/GunelXelilli/Eco-Travel-Data-Warehouse-PostgreSQL-Project-/blob/main/offset-projectsphoto.png)
 
 ### Contributions Table
 ![Contributions Table](https://github.com/GunelXelilli/Eco-Travel-Data-Warehouse-PostgreSQL-Project-/blob/main/Contributionsphoto.png)
