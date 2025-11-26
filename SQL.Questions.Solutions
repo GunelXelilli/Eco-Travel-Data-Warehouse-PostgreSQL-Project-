@@ -149,6 +149,27 @@ FROM (
 WHERE q.total_contribution > 0.5 * q.co2_emission;
 
 
+### Question 7 – Aggregation + CASE WHEN
+
+**Question:**  
+Calculate the **average distance** and **total CO₂ emission** for each **transport mode**, and label modes with an average distance over **1000 km** as **“Long Distance Mode.”**
+
+**Solution:**
+
+```sql
+SELECT
+    tr.transport_mode,
+    AVG(tr.distance_km) AS avg_distance,
+    SUM(tr.distance_km * ef.co2_per_km) AS total_co2_emission,
+    CASE
+        WHEN AVG(tr.distance_km) > 1000 THEN 'Long Distance Mode'
+        ELSE 'Short Distance Mode'
+    END AS mode_type
+FROM public.trips tr
+JOIN public.emission_factors ef 
+    ON tr.transport_mode = ef.transport_mode
+GROUP BY tr.transport_mode;
+
 
 
 
