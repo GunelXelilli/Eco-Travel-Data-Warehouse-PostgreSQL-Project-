@@ -300,3 +300,25 @@ ORDER BY twc.distance_category, twc.co2_emission DESC;
 
 
 
+-- ### Question 12 – GROUPING SETS
+-- ❓ SQL Question
+-- For each traveler and each transport mode, calculate the maximum CO₂ emission per trip.
+-- Additionally, also show maximum CO₂ per traveler and maximum CO₂ per transport mode  using GROUPING SETS.
+-- Return traveler_id, transport_mode, and maximum CO₂ emission.
+
+-- ✅ SQL Solution
+SELECT 
+    rav.traveler_id,
+    tr.transport_mode,
+    MAX(fc.co2_per_km * tr.distance_km) AS co2_emission
+FROM public.travelers rav
+JOIN public.trips tr ON rav.traveler_id = tr.traveler_id
+JOIN public.emission_factors fc ON tr.transport_mode = fc.transport_mode
+GROUP BY GROUPING SETS (
+    (rav.traveler_id),       
+    (tr.transport_mode)     
+)
+ORDER BY rav.traveler_id NULLS FIRST, tr.transport_mode NULLS FIRST;
+
+
+
