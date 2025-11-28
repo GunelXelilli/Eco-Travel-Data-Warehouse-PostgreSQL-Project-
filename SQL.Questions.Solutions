@@ -2,13 +2,13 @@
 
 ## Question 1 – Aggregation + Filtering + CASE WHEN
 
-**Question:**  
+** ❓ Question:** 
 List each **traveler** with their total number of trips and total distance.  
 Also, label travelers with a total distance over 1000 km as “Long Traveler” and others as “Short Traveler.”  
 
 **Solution:**
 
-```sql
+``` ✅ sql
 
 SELECT full_name,count( trip_id ) AS "total_trips"  , sum(distance_km) AS "total_distance",
 CASE
@@ -24,14 +24,14 @@ ORDER BY total_trips,total_distance DESC
 
 ### Question 2 – Window Function + Filtering
 
-**Question:**  
+** ❓ Question:**  
 For each **traveler**, calculate the **CO2 emission per trip** and rank the emissions within each traveler.  
 (CO2 = distance_km × co2_per_km)  
 Only include trips with a distance greater than 500 km.
 
 **Solution:**
 
-```sql
+``` ✅ sql
 SELECT 
     t.full_name, 
     tr.destination, 
@@ -50,13 +50,13 @@ WHERE tr.distance_km > 500;
 
 ### Question 3 – Aggregation + CASE WHEN + Filtering
 
-**Question:**  
+** ❓ Question:**  
 For each **country**, calculate the total number of trips and average distance.  
 Label countries with an average distance over 700 km as “Far Trips Country” and others as “Nearby Trips Country.”
 
 **Solution:**
 
-```sql
+``` ✅ sql
 SELECT 
     t.country, 
     COUNT(tr.trip_id) AS total_trips,
@@ -73,13 +73,13 @@ GROUP BY t.country;
 
 ### Question 4 – Aggregation + Window Function + Filtering
 
-**Question:**  
+** ❓ Question:** 
 Calculate the **total CO2 emissions** for each **traveler** and rank travelers globally by total CO2 emissions.  
 Only include travelers whose total CO2 emission is greater than 500.
 
 **Solution:**
 
-```sql
+``` ✅ sql
 SELECT 
     t.full_name, 
     SUM(tr.distance_km * ef.co2_per_km) AS total_co2_emission, 
@@ -96,13 +96,13 @@ HAVING SUM(tr.distance_km * ef.co2_per_km) > 500;
 
 ### Question 5 – Filtering + CASE WHEN + Window Function
 
-**Question:**  
+** ❓ Question:** 
 For each **contribution**, show the traveler’s **total contribution** and label them as “High Donor” if their total contribution exceeds 75 USD, otherwise “Low Donor.”  
 Sort travelers by total contribution in descending order.
 
 **Solution:**
 
-```sql
+``` ✅ sql
 SELECT 
     t.full_name, 
     c.project_id, 
@@ -119,12 +119,12 @@ ORDER BY total_contribution DESC;
 
 ### Question 6 – Trip CO2 vs. Contributions (JOIN + Aggregation + Filtering)
 
-**Question:**  
+** ❓ Question:** 
 Combine each trip’s **CO2 emission** with the traveler’s **total contribution** and show only the trips where the traveler’s total contribution exceeds **50% of the trip’s CO2 emission**.
 
 **Solution (PostgreSQL version):**
 
-```sql
+``` ✅ sql
 SELECT *
 FROM (
     SELECT
@@ -151,12 +151,12 @@ WHERE q.total_contribution > 0.5 * q.co2_emission;
 
 ### Question 7 – Aggregation + CASE WHEN
 
-**Question:**  
+** ❓ Question:**  
 Calculate the **average distance** and **total CO₂ emission** for each **transport mode**, and label modes with an average distance over **1000 km** as **“Long Distance Mode.”**
 
 **Solution:**
 
-```sql
+``` ✅ sql
 SELECT
     tr.transport_mode,
     AVG(tr.distance_km) AS avg_distance,
@@ -173,13 +173,13 @@ GROUP BY tr.transport_mode;
 
 ### Question 8 – Window Function (LAG)
 
-**Question:**  
+** ❓ Question:**  
 For each **traveler**, order their trips by **trip date** and show the **CO₂ emission of the previous trip**.  
 (CO₂ = `distance_km × co2_per_km`)
 
 **Solution:**
 
-```sql
+``` ✅ sql
 SELECT
     t.full_name,
     tr.trip_id,
@@ -199,6 +199,31 @@ JOIN public.emission_factors ef
     ON tr.transport_mode = ef.transport_mode
 ORDER BY t.full_name, tr.trip_date;
 
+
+
+
+### Question 8 – Window Function (LAG)
+
+** ❓ Question:** 
+-- Find the trip with the highest CO₂ emission in the entire system.
+-- Return the traveler’s full name, destination, and the CO₂ emission value.
+
+-- ✅ SQL Solution
+SELECT 
+    rav.full_name,
+    tr.destination, 
+    (fc.co2_per_km * tr.distance_km) AS co2_emission
+FROM public.travelers rav
+JOIN public.trips tr 
+    ON rav.traveler_id = tr.traveler_id
+JOIN public.emission_factors fc 
+    ON tr.transport_mode = fc.transport_mode
+WHERE (fc.co2_per_km * tr.distance_km) = (
+    SELECT MAX(fc2.co2_per_km * tr2.distance_km)
+    FROM public.trips tr2
+    JOIN public.emission_factors fc2
+        ON tr2.transport_mode = fc2.transport_mode
+);
 
 
 
