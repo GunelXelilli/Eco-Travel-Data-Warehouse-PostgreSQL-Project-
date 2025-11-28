@@ -341,3 +341,42 @@ GROUP BY rav.full_name
 ORDER BY prjct_typ DESC;
 
 
+
+
+
+-- ### Question 14  – Long Distance Trips
+-- ❓ SQL Question
+-- Retrieve trips where the distance traveled is greater than 500 km.
+-- Return trip_id, full_name, destination, and distance_km.
+
+-- ✅ SQL Solution
+SELECT 
+    t.trip_id,
+    tr.full_name,
+    t.destination,
+    t.distance_km
+FROM public.trips t
+JOIN public.travelers tr 
+    ON t.traveler_id = tr.traveler_id
+WHERE t.distance_km > 500
+ORDER BY t.distance_km DESC;
+
+
+
+
+
+-- ### Question  15 – Total Trips per Traveler
+-- ❓ SQL Question
+-- For each traveler, calculate the total number of trips they have taken.
+-- Return full_name and trip_count.
+
+-- ✅ SQL Solution
+SELECT 
+    tr.full_name, 
+    COUNT(t.trip_id) AS trip_count
+FROM public.travelers tr
+LEFT JOIN public.trips t 
+    ON tr.traveler_id = t.traveler_id
+GROUP BY tr.full_name
+ORDER BY trip_count DESC;
+
