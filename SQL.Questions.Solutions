@@ -245,6 +245,58 @@ GROUP BY rav.full_name
 ORDER BY percentage_of_global_total DESC;
 
 
+-- ### Question 11 – Inefficient Trips
+-- ❓ SQL Question
+-- Find trips where the traveler did NOT use the lowest-emission transport mode for the distance category.
+-- Distance categories:
+--   Short: <= 500 km
+--   Medium: 501 – 1500 km
+--   Long: > 1500 km
+-- Return full_name, destination, transport_mode, distance_km, CO2 emission, and distance_category.
+
+-- ✅ SQL Solution
+WITH trips_with_category AS (
+    SELECT 
+        t.traveler_id,
+        t.full_name,
+        tr.trip_id,
+        tr.destination,
+        tr.transport_mode,
+        tr.distance_km,
+        tr.distance_km * ef.co2_per_km AS co2_emission,
+        ef.co2_per_km,
+        CASE
+            WHEN tr.distance_km <= 500 THEN 'Short'
+            WHEN tr.distance_km BETWEEN 501 AND 1500 THEN 'Medium'
+            ELSE 'Long'
+        END AS distance_category
+    FROM public.travelers t
+    JOIN public.trips tr 
+        ON t.traveler_id = tr.traveler_id
+    JOIN public.emission_factors ef 
+        ON tr.transport_mode = ef.transport_mode
+),
+
+lowest_emission_per_category AS (
+    SELECT 
+        distance_category,
+        MIN(co2_per_km) AS min_co2_per_km
+    FROM trips_with_category
+    GROUP BY distance_category
+)
+
+SELECT 
+    twc.full_name,
+    twc.destination,
+    twc.transport_mode,
+    twc.distance_km,
+    twc.co2_emission,
+    twc.distance_category
+FROM trips_with_category twc
+JOIN lowest_emission_per_category lec
+    ON twc.distance_category = lec.distance_category
+WHERE twc.co2_per_km > lec.min_co2_per_km
+ORDER BY twc.distance_category, twc.co2_emission DESC;
 
 
 
