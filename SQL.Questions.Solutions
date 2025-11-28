@@ -202,7 +202,7 @@ ORDER BY t.full_name, tr.trip_date;
 
 
 
-### Question 8 – Window Function (LAG)
+### Question 9 – filter and Subquery
 
 ** ❓ Question:** 
 -- Find the trip with the highest CO₂ emission in the entire system.
@@ -224,6 +224,25 @@ WHERE (fc.co2_per_km * tr.distance_km) = (
     JOIN public.emission_factors fc2
         ON tr2.transport_mode = fc2.transport_mode
 );
+
+
+
+### Question 10 – join and Aggregate function
+
+-- ❓ SQL Question
+-- For each traveler, calculate their total contribution and the percentage of the global total contributions.
+-- Return full_name, total_contribution, and percentage_of_global_total.
+
+-- ✅ SQL Solution
+SELECT 
+    rav.full_name,
+    SUM(ct.contribution_usd) AS total_contribution,
+    SUM(ct.contribution_usd) / SUM(SUM(ct.contribution_usd)) OVER() * 100 AS percentage_of_global_total
+FROM public.travelers rav
+JOIN public.contributions ct 
+    ON rav.traveler_id = ct.traveler_id
+GROUP BY rav.full_name
+ORDER BY percentage_of_global_total DESC;
 
 
 
