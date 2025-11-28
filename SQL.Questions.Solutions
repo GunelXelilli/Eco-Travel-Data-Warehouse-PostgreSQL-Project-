@@ -322,3 +322,22 @@ ORDER BY rav.traveler_id NULLS FIRST, tr.transport_mode NULLS FIRST;
 
 
 
+
+-- ### Question 13 – Traveler Project Types
+-- ❓ SQL Question
+-- For each traveler, calculate how many different offset project types they have contributed to.
+-- Return full_name and the count of distinct project types (prjct_typ).
+
+-- ✅ SQL Solution
+SELECT 
+    rav.full_name,
+    COUNT(DISTINCT pr.project_type) AS prjct_typ
+FROM public.travelers rav
+JOIN public.contributions ct 
+    ON rav.traveler_id = ct.traveler_id
+JOIN public.offset_projects pr 
+    ON ct.project_id = pr.project_id
+GROUP BY rav.full_name
+ORDER BY prjct_typ DESC;
+
+
