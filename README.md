@@ -68,7 +68,11 @@ The dataset and table structure are designed to **practice SQL queries** such as
 
 
 
+📫 **Contact**
 
+- 🧑‍💻 GitHub: [GunelXelilli](https://github.com/GunelXelilli)  
+- 🐘 LeetCode: [Gunel87](https://leetcode.com/u/Gunel87/)  
+- 💼 LinkedIn: [Gunel Xelilli](https://www.linkedin.com/in/gunel-xelilli-390bb32b7/)
 
 
 
